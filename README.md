@@ -2,5 +2,12 @@
 
 A new Flutter application.
 
-## 说明
+## 教程
+
+https://flutterchina.club/widgets-intro/
+
+https://book.flutterchina.club/
+
+
+
 
