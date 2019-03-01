@@ -26,6 +26,13 @@ class RandomWordsState extends State<RandomWords> {
   }
 
   Widget _buildSuggestions() {
+
+    return RaisedButton(
+      onPressed: _launchUrl,
+      child: Text("show Flutter homepage"),
+    );
+
+/*
     return ListView.builder(
         padding: const EdgeInsets.all(10.0),
         itemBuilder: (context, i) {
@@ -35,7 +42,12 @@ class RandomWordsState extends State<RandomWords> {
             _suggestions.addAll(generateWordPairs().take(10));
           }
           return _buildRow(_suggestions[index]);
-        });
+        });*/
+  }
+
+  _launchUrl() async {
+    const url = "https://flutter.io";
+
   }
 
   Widget _buildRow(WordPair pair) {
