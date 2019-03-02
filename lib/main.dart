@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:splashscreen/splashscreen.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 void main() => runApp(
       new MyApp(),
@@ -11,26 +12,26 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      debugShowCheckedModeBanner: false,
+        debugShowCheckedModeBanner: false,
         home: new SplashScreen(
-      seconds: 5,
-      navigateAfterSeconds: new AfterSplash(),
-      title: new Text(
-        'Welcome In 破竹',
-        style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
-      ),
-      image: new Image.network(
-          'https://flutter.io/images/catalog-widget-placeholder.png'),
-      gradientBackground: new LinearGradient(
-          colors: [Colors.red, Colors.blue],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight),
-      backgroundColor: Colors.white,
-      styleTextUnderTheLoader: new TextStyle(),
-      photoSize: 100.0,
-      onClick: () => print("Flutter Egypt"),
-      loaderColor: Colors.red,
-    ));
+          seconds: 5,
+          navigateAfterSeconds: new AfterSplash(),
+          title: new Text(
+            'Welcome In 破竹',
+            style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+          ),
+          image: new Image.network(
+              'https://flutter.io/images/catalog-widget-placeholder.png'),
+          gradientBackground: new LinearGradient(
+              colors: [Colors.red, Colors.blue],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight),
+          backgroundColor: Colors.white,
+          styleTextUnderTheLoader: new TextStyle(),
+          photoSize: 100.0,
+          onClick: () => print("Flutter Egypt"),
+          loaderColor: Colors.red,
+        ));
   }
 }
 
@@ -47,13 +48,14 @@ class AfterSplash extends StatelessWidget {
 
 class RandomWordsState extends State<RandomWords> {
   final _suggestions = <WordPair>[];
-  final _biggerFont = const TextStyle(fontSize: 18.0);
+  final _biggerFont = const TextStyle(fontSize: 18.0, fontFamily: 'Schyler');
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
 //        appBar: AppBar(title: Text("name Generator")),
-        body: _buildSuggestions());
+      body: _buildSuggestions(),
+    );
   }
 
   Widget _buildSuggestions() {
@@ -78,7 +80,14 @@ class RandomWordsState extends State<RandomWords> {
             return _buildRow(_suggestions[index]);
           }),
       floatingActionButton: new FloatingActionButton(
-          tooltip: 'Add', child: new Icon(Icons.add), onPressed: null),
+          tooltip: 'Add', child: new Icon(Icons.add), onPressed: () {
+        Fluttertoast.showToast(
+            msg: "您点击了添加按钮",
+            toastLength: Toast.LENGTH_SHORT,
+            timeInSecForIos: 1,
+            fontSize: 16.0
+        );
+      }),
     );
     /*return ListView.builder(
         padding: const EdgeInsets.all(10.0),
@@ -99,10 +108,20 @@ class RandomWordsState extends State<RandomWords> {
 
   Widget _buildRow(WordPair pair) {
     return ListTile(
+        onTap: () {
+          Fluttertoast.showToast(
+              msg: "This is Center Short Toast",
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIos: 1,
+              backgroundColor: Colors.red,
+              textColor: Colors.white,
+              fontSize: 16.0);
+        },
         title: Text(
-      pair.asPascalCase,
-      style: _biggerFont,
-    ));
+          pair.asPascalCase,
+          style: _biggerFont,
+        ));
 
     return new Scaffold(
       appBar: new AppBar(
