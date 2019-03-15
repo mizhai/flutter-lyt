@@ -4,6 +4,10 @@
 
 A new Flutter application.
 
+## 规范
+
+[代码开发规范](代码开发规范.md)
+
 ## 教程
 
 https://flutterchina.club/widgets-intro/
