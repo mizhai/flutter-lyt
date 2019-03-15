@@ -1,12 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-
-class Project {
-  final String title;
-  final String decription;
-
-  Project(this.title, this.decription);
-}
+import 'package:dio/dio.dart';
+import '../beans/loupan.dart';
 
 class MyPage extends StatefulWidget {
   @override
@@ -14,20 +10,42 @@ class MyPage extends StatefulWidget {
 }
 
 class _myinfo extends State<MyPage> {
+  List<DataListBean> loupan;
+  String showtext = "000";
+
   @override
   Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: new AppBar(
+        title: Text("个人中心"),
+      ),
+      body: Center(
+          child: Column(
+            children: <Widget>[
+              Text(showtext),
+              RaisedButton(
+                  child: Text("获取"),
+                  onPressed: () {
+                    getHttp().then((val) {
+                      setState(() {
+                        showtext = val['data'][0]['name'].toString();
+
+                      });
+                    });
+                  }),
+            ],
+          )),
+    );
     return Scaffold(
         appBar: new AppBar(
           title: Text("个人中心"),
         ),
-        body: ProjectList(
-            projects:
-                List.generate(20, (i) => Project("用户id为: $i", "这是描述 $i"))));
+        body: ProjectList(projects: loupan));
   }
 }
 
 class ProjectList extends StatelessWidget {
-  final List<Project> projects;
+  final List<DataListBean> projects;
 
   ProjectList({Key key, @required this.projects}) : super(key: key);
 
@@ -39,7 +57,7 @@ class ProjectList extends StatelessWidget {
           return Column(
             children: <Widget>[
               ListTile(
-                title: Text("测试标题:" + projects[index].title),
+                title: Text("测试标题:" + projects[index].name),
                 onTap: () {
                   Navigator.push(
                       context,
@@ -56,7 +74,7 @@ class ProjectList extends StatelessWidget {
 }
 
 class ProjectDetail extends StatelessWidget {
-  final Project project;
+  final DataListBean project;
 
   ProjectDetail({Key key, @required this.project}) : super(key: key);
 
@@ -64,7 +82,7 @@ class ProjectDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("标题：" + project.title),
+        title: Text("标题：" + project.name),
       ),
       body: Container(
         margin: const EdgeInsets.all(15.0),
@@ -74,7 +92,7 @@ class ProjectDetail extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Text(project.decription),
+            Text(project.address),
             RaisedButton(
                 child: Text("返回"),
                 onPressed: () {
@@ -85,5 +103,17 @@ class ProjectDetail extends StatelessWidget {
         color: Colors.green,
       ),
     );
+  }
+}
+
+Future getHttp() async {
+  try {
+    Response response = await Dio().get(
+        "https://newapi.mizhai.com/SDK/LoupanSaiXuan.html?siteID=1&typeid=0&areaid=0&priceid=0&tagid=0&hide=0&sort=0&keyword=&mapX=0&mapY=0&juli=0&p=1&streetid=0&tj=0");
+    print(response);
+    return response.data;
+//      loupan = json.decode(response.data.toString());
+  } catch (e) {
+    print(e);
   }
 }
