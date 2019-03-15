@@ -12,30 +12,67 @@ class _pozhuinfo extends State<PozhuPage> {
       appBar: new AppBar(
         title: Text("破竹号"),
       ),
-      body: new Container(
-        child: new Column(
-         mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            new Container(
-              child: new Text("关于破竹的意见和建议请添加破竹小助手微信同手机18837153716咨询",style: new TextStyle(fontSize: 22.0),textAlign: TextAlign.right,),
-              alignment: Alignment.topLeft,
-              width: 300.0,
-              height: 140.0,
-              color: Colors.lightBlue,
-              margin: const EdgeInsets.all(10.0),
-              padding: const EdgeInsets.all(10.0),
-            ),
-            new Container(
-              child: new Text("关于破竹的意见和建议请添加破竹小助手微信同手机18837153716咨询",style: new TextStyle(fontSize: 22.0),textAlign: TextAlign.right,),
-              alignment: Alignment.topLeft,
-              width: 300.0,
-              height: 300.0,
-              color: Colors.lightBlue,
-              margin: const EdgeInsets.all(10.0),
-              padding: const EdgeInsets.all(10.0),
-            ),
-          ],
-        ),
+      body: GridView(
+        padding: new EdgeInsets.all(5.0),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            mainAxisSpacing: 3.0,
+            crossAxisSpacing: 3.0,
+            childAspectRatio: 0.7),
+        children: <Widget>[
+          new Image.network(
+            "http://img5.mtime.cn/mt/2018/10/22/104316.77318635_180X260X4.jpg",
+            fit: BoxFit.cover,
+          ),
+          new Image.network(
+              'http://img5.mtime.cn/mt/2018/10/10/112514.30587089_180X260X4.jpg',
+              fit: BoxFit.cover),
+          new Image.network(
+              'http://img5.mtime.cn/mt/2018/11/13/093605.61422332_180X260X4.jpg',
+              fit: BoxFit.cover),
+          new Image.network(
+              'http://img5.mtime.cn/mt/2018/11/07/092515.55805319_180X260X4.jpg',
+              fit: BoxFit.cover),
+          new Image.network(
+              'http://img5.mtime.cn/mt/2018/11/21/090246.16772408_135X190X4.jpg',
+              fit: BoxFit.cover),
+          new Image.network(
+              'http://img5.mtime.cn/mt/2018/11/17/162028.94879602_135X190X4.jpg',
+              fit: BoxFit.cover),
+          new Image.network(
+              'http://img5.mtime.cn/mt/2018/11/19/165350.52237320_135X190X4.jpg',
+              fit: BoxFit.cover),
+          new Image.network(
+              'http://img5.mtime.cn/mt/2018/11/16/115256.24365160_180X260X4.jpg',
+              fit: BoxFit.cover),
+          new Image.network(
+              'http://img5.mtime.cn/mt/2018/11/20/141608.71613590_135X190X4.jpg',
+              fit: BoxFit.cover),
+          new Image.network(
+              'http://img5.mtime.cn/mt/2018/10/10/112514.30587089_180X260X4.jpg',
+              fit: BoxFit.cover),
+          new Image.network(
+              'http://img5.mtime.cn/mt/2018/11/13/093605.61422332_180X260X4.jpg',
+              fit: BoxFit.cover),
+          new Image.network(
+              'http://img5.mtime.cn/mt/2018/11/07/092515.55805319_180X260X4.jpg',
+              fit: BoxFit.cover),
+          new Image.network(
+              'http://img5.mtime.cn/mt/2018/11/21/090246.16772408_135X190X4.jpg',
+              fit: BoxFit.cover),
+          new Image.network(
+              'http://img5.mtime.cn/mt/2018/11/17/162028.94879602_135X190X4.jpg',
+              fit: BoxFit.cover),
+          new Image.network(
+              'http://img5.mtime.cn/mt/2018/11/19/165350.52237320_135X190X4.jpg',
+              fit: BoxFit.cover),
+          new Image.network(
+              'http://img5.mtime.cn/mt/2018/11/16/115256.24365160_180X260X4.jpg',
+              fit: BoxFit.cover),
+          new Image.network(
+              'http://img5.mtime.cn/mt/2018/11/20/141608.71613590_135X190X4.jpg',
+              fit: BoxFit.cover),
+        ],
       ),
     );
   }

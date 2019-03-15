@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
     return new MaterialApp(
         debugShowCheckedModeBanner: false,
         home: new SplashScreen(
-          seconds: 5,
+          seconds: 3,
           navigateAfterSeconds: new AfterSplash(),
           title: new Text(
             'Welcome In 破竹',

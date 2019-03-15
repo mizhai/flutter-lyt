@@ -16,6 +16,18 @@ class _homelist extends State<HomePage> {
     return Scaffold(
       appBar: new AppBar(
         title: Text("首页"),
+        actions: <Widget>[
+          new IconButton(icon: Icon(Icons.search), onPressed: (){
+            Fluttertoast.showToast(
+                msg: "你点击了搜索按钮",
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.CENTER,
+                timeInSecForIos: 1,
+                backgroundColor: Colors.deepPurple,
+                textColor: Colors.white,
+                fontSize: 16.0);
+          })
+        ],
       ),
       body: ListView.builder(
           padding: const EdgeInsets.all(10.0),
@@ -53,6 +65,7 @@ class _homelist extends State<HomePage> {
               textColor: Colors.white,
               fontSize: 16.0);
         },
+        leading: Icon(Icons.access_time),
         title: Text(
           pair.asPascalCase,
           style: _biggerFont,
